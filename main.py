@@ -6,8 +6,11 @@ import sys
 from ast import Break
 from sys import argv
 
-def INSTALL(): 
-   os.system(f'sudo pacman -S {sys.argv[2]}')
+def INSTALL():
+    pkgs = argv[2:]
+    res = str(pkgs)[1:-1]
+    new = res.replace(',', '')
+    os.system(f'sudo pacman -S {new}')
 
 def UPGRADE():
     n = len(sys.argv)
@@ -17,20 +20,32 @@ def UPGRADE():
       os.system("sudo pacman -Syu")
       sys.exit
     else:
-       os.system(f'sudo pacman -Syu {sys.argv[2]}')
+       pkgs = argv[2:]
+       res = str(pkgs)[1:-1]
+       new = res.replace(',', '')
+       os.system(f'sudo pacman -Syu {new}')
        sys.exit
              
 def REMOVE():
-   os.system(f"sudo pacman -Rs {sys.argv[2]}")
+   pkgs = argv[2:]
+   res = str(pkgs)[1:-1]
+   new = res.replace(',', '')
+   os.system(f"sudo pacman -Rs {new}")
 
 def REMOVEORPHANS():
    os.system(f"sudo pacman -Rs $(pacman -Qqdt)")
 
 def SEARCH():
-   os.system(f'sudo pacman -Ss {sys.argv[2]}')
+   pkgs = argv[2:]
+   res = str(pkgs)[1:-1]
+   new = res.replace(',', '')
+   os.system(f'sudo pacman -Ss {new}')
 
 def INFO():
-    os.system(f'sudo pacman -Si {sys.argv[2]}')
+   pkgs = argv[2:]
+   res = str(pkgs)[1:-1]
+   new = res.replace(',', '')
+   os.system(f'sudo pacman -Si {new}')
 
 def DO_WORK():
    """ Function to handle command line usage"""
