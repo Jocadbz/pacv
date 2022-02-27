@@ -7,7 +7,7 @@ from ast import Break
 from sys import argv
 
 def INSTALL():
-    pkgs = argv[2:]
+    pkgs = sys.argv[2:]
     res = str(pkgs)[1:-1]
     new = res.replace(',', '')
     os.system(f'sudo pacman -S {new}')
@@ -20,14 +20,14 @@ def UPGRADE():
       os.system("sudo pacman -Syu")
       sys.exit
     else:
-       pkgs = argv[2:]
+       pkgs = sys.argv[2:]
        res = str(pkgs)[1:-1]
        new = res.replace(',', '')
        os.system(f'sudo pacman -Syu {new}')
        sys.exit
-             
+
 def REMOVE():
-   pkgs = argv[2:]
+   pkgs = sys.argv[2:]
    res = str(pkgs)[1:-1]
    new = res.replace(',', '')
    os.system(f"sudo pacman -Rs {new}")
@@ -36,13 +36,13 @@ def REMOVEORPHANS():
    os.system(f"sudo pacman -Rs $(pacman -Qqdt)")
 
 def SEARCH():
-   pkgs = argv[2:]
+   pkgs = sys.argv[2:]
    res = str(pkgs)[1:-1]
    new = res.replace(',', '')
    os.system(f'sudo pacman -Ss {new}')
 
 def INFO():
-   pkgs = argv[2:]
+   pkgs = sys.argv[2:]
    res = str(pkgs)[1:-1]
    new = res.replace(',', '')
    os.system(f'sudo pacman -Si {new}')
@@ -87,5 +87,5 @@ def DO_WORK():
             print('Unrecognised argument.')
             print('Try running with --help flag to see current commands')
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     DO_WORK()
