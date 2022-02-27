@@ -3,8 +3,8 @@
 
 import os
 import sys
-from ast import Break
-from sys import argv
+# from ast import Break
+
 
 def INSTALL():
     pkgs = sys.argv[2:]
@@ -12,8 +12,8 @@ def INSTALL():
     new = res.replace(',', '')
     os.system(f'sudo pacman -S {new}')
 
+
 def UPGRADE():
-    n = len(sys.argv)
     args = sys.argv
     args = args[2:]
     if len(args) == 0:
@@ -26,14 +26,17 @@ def UPGRADE():
        os.system(f'sudo pacman -Syu {new}')
        sys.exit
 
+
 def REMOVE():
    pkgs = sys.argv[2:]
    res = str(pkgs)[1:-1]
    new = res.replace(',', '')
    os.system(f"sudo pacman -Rs {new}")
 
+
 def REMOVEORPHANS():
-   os.system(f"sudo pacman -Rs $(pacman -Qqdt)")
+   os.system("sudo pacman -Rs $(pacman -Qqdt)")
+
 
 def SEARCH():
    pkgs = sys.argv[2:]
@@ -41,16 +44,18 @@ def SEARCH():
    new = res.replace(',', '')
    os.system(f'sudo pacman -Ss {new}')
 
+
 def INFO():
    pkgs = sys.argv[2:]
    res = str(pkgs)[1:-1]
    new = res.replace(',', '')
    os.system(f'sudo pacman -Si {new}')
 
+
 def DO_WORK():
    """ Function to handle command line usage"""
    args = sys.argv
-   args = args[1:] # First element of args is the file name
+   args = args[1:]  # First element of args is the file name
 
    if len(args) == 0:
       print('Wrong usage. Run with --help flag to see current commands.')
@@ -86,6 +91,7 @@ def DO_WORK():
          else:
             print('Unrecognised argument.')
             print('Try running with --help flag to see current commands')
+
 
 if __name__ == '__main__':
     DO_WORK()
