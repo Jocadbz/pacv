@@ -40,8 +40,3 @@ pacy [s or search] <package> # -> same as "pacman -Ss"
 Just move the binary to ```bin```. And you are good to go.
 
 It is pretty basic right now, but i am working on this.
-
-### Know limitations
-
-Unfortunately, the operations don't support more than one package. that means you can't install several packages
-in an row, you need to install one per time.
