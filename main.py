@@ -6,6 +6,10 @@ import sys
 # from ast import Break
 
 
+def VERSION():
+    print("Pacy version: 2.0.0")
+
+
 def INSTALL():
     pkgs = sys.argv[2:]
     res = str(pkgs)[1:-1]
@@ -70,6 +74,7 @@ def DO_WORK():
             print(' clean   -> clean the system and remove orphaned packages')
             print(' search  -> Search for an package')
             print(' info    -> Display info of an package')
+            print(' version -> Version of Pacy that is installed')
          elif a == 'install' or a == 'i':
             INSTALL()
             break
@@ -88,6 +93,9 @@ def DO_WORK():
          elif a == 'info':
             INFO()
             break
+         elif a == 'version' or a == 'vs':
+             VERSION()
+             break
          else:
             print('Unrecognised argument.')
             print('Try running with --help flag to see current commands')
