@@ -8,6 +8,7 @@ import sys
 
 def VERSION():
     print("Pacy version: 2.0.0")
+    os.system("pacman --version")
 
 
 def INSTALL():
