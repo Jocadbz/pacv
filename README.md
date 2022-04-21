@@ -38,5 +38,3 @@ pacy s <package> # -> same as "pacman -Ss"
 
 ### How to install ?
 Just move the binary to ```bin```. And you are good to go.
-
-It is pretty basic right now, but i am working on this.
