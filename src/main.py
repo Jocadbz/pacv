@@ -1,9 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import subprocess
 import os
 import sys
 # from ast import Break
+
+help = """
+    Pacy : An wrapper for pacman
+
+    Options:
+    install -> Install the desired package
+    upgrade -> Do an complete upgrade
+    remove  -> remove the desired program
+    clean   -> clean the system and remove orphaned packages
+    search  -> Search for an package
+    info    -> Display info of an package
+    version -> Version of Pacy that is installed
+       """
 
 
 def VERSION():
@@ -15,20 +28,20 @@ def INSTALL():
     pkgs = sys.argv[2:]
     res = str(pkgs)[1:-1]
     new = res.replace(',', '')
-    os.system(f'sudo pacman -S {new}')
+    subprocess.call(f'sudo pacman -S {new}', shell=True)
 
 
 def UPGRADE():
     args = sys.argv
     args = args[2:]
     if len(args) == 0:
-      os.system("sudo pacman -Syu")
+      subprocess.call("sudo pacman -Syu", shell=True)
       sys.exit
     else:
        pkgs = sys.argv[2:]
        res = str(pkgs)[1:-1]
        new = res.replace(',', '')
-       os.system(f'sudo pacman -Syu {new}')
+       subprocess.call(f'sudo pacman -Syu {new}', shell=True)
        sys.exit
 
 
@@ -36,25 +49,25 @@ def REMOVE():
    pkgs = sys.argv[2:]
    res = str(pkgs)[1:-1]
    new = res.replace(',', '')
-   os.system(f"sudo pacman -Rs {new}")
+   subprocess.call(f"sudo pacman -Rs {new}", shell=True)
 
 
 def REMOVEORPHANS():
-   os.system("sudo pacman -Rs $(pacman -Qqdt)")
+   subprocess.call("sudo pacman -Rs $(pacman -Qqdt)", shell=True)
 
 
 def SEARCH():
    pkgs = sys.argv[2:]
    res = str(pkgs)[1:-1]
    new = res.replace(',', '')
-   os.system(f'sudo pacman -Ss {new}')
+   subprocess.call(f'sudo pacman -Ss {new}', shell=True)
 
 
 def INFO():
    pkgs = sys.argv[2:]
    res = str(pkgs)[1:-1]
    new = res.replace(',', '')
-   os.system(f'sudo pacman -Si {new}')
+   subprocess.call(f'sudo pacman -Si {new}')
 
 
 def DO_WORK():
@@ -67,15 +80,7 @@ def DO_WORK():
    else:
       for a in args:
          if a == '--help':
-            print('pacy : An wrapper for pacman')
-            print('Options:')
-            print(' install -> Install the desired package')
-            print(' upgrade -> Do an complete upgrade')
-            print(' remove  -> remove the desired program')
-            print(' clean   -> clean the system and remove orphaned packages')
-            print(' search  -> Search for an package')
-            print(' info    -> Display info of an package')
-            print(' version -> Version of Pacy that is installed')
+            print(help)
          elif a == 'install' or a == 'i':
             INSTALL()
             break
