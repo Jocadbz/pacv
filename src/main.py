@@ -9,13 +9,13 @@ help = """
     Pacy : An wrapper for pacman
 
     Options:
-    install -> Install the desired package
-    upgrade -> Do an complete upgrade
-    remove  -> remove the desired program
-    clean   -> clean the system and remove orphaned packages
-    search  -> Search for an package
-    info    -> Display info of an package
-    version -> Version of Pacy that is installed
+    i [package]    -> Install the desired package
+    u <package>    -> Do an complete upgrade
+    r [package]    -> remove the desired program
+    c              -> clean the system and remove orphaned packages
+    s [package]    -> Search for an package
+    info [package] -> Display info of an package
+    vs             -> Version of Pacy and Pacman
        """
 
 
@@ -70,41 +70,39 @@ def INFO():
    subprocess.call(f'sudo pacman -Si {new}')
 
 
-def DO_WORK():
-   """ Function to handle command line usage"""
-   args = sys.argv
-   args = args[1:]  # First element of args is the file name
+abbreviationsDict = {"i": INSTALL, "u": UPGRADE, "r": REMOVE, "c": REMOVEORPHANS,
+                     "s": SEARCH, "vs": VERSION, "info": INFO}
 
-   if len(args) == 0:
-      print('Wrong usage. Run with --help flag to see current commands.')
-   else:
-      for a in args:
-         if a == '--help':
-            print(help)
-         elif a == 'install' or a == 'i':
-            INSTALL()
-            break
-         elif a == 'upgrade' or a == 'u':
-            UPGRADE()
-            break
-         elif a == 'remove' or a == 'r':
-            REMOVE()
-            break
-         elif a == "clean" or a == "c":
-            REMOVEORPHANS()
-            break
-         elif a == 'search' or a == 's':
-            SEARCH()
-            break
-         elif a == 'info':
-            INFO()
-            break
-         elif a == 'version' or a == 'vs':
-             VERSION()
-             break
-         else:
-            print('Unrecognised argument.')
-            print('Try running with --help flag to see current commands')
+
+def DO_WORK():
+    """ Function to handle command line usage"""
+    args = sys.argv
+    args = args[1:]  # First element of args is the file name
+
+    if len(args) == 0:
+        print('Wrong usage. Run with --help flag to see current commands.')
+    else:
+        for arguments in args:
+            if arguments == '--help':
+                print(help)
+                break
+            else:
+                try:
+                    if (arguments in abbreviationsDict.keys()):
+                        # get your function based on key in abbreviationsDict
+                        requiredFunction = abbreviationsDict[arguments]
+                        requiredFunction()  # Execute this function.
+                        break
+# Since the user input a command that can't be used as the name of a function..
+                    else:
+                        # install = INSTALL + () = INSTALL() and eval it.
+                        eval(f"{arguments.upper()}()")
+                        break
+# (NameError) will be throw in case you use a command which is not present.
+                except NameError:
+                    print('Unrecognized argument.')
+                    print("Try running with --help flag to see current commands")
+                    break
 
 
 if __name__ == '__main__':
