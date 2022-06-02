@@ -37,4 +37,7 @@ pacy s <package> # -> same as "pacman -Ss"
 ```
 
 ### How to install ?
-Just move the binary to ```bin```. And you are good to go.
+You can use the ```jocadbz-arch-repo```, a repo I made for my projects.
+Instructions at https://jocadbz.github.io/arch-repo/
+
+If you don't want to mess around with repos, just move the binary to ```/usr/bin/```
