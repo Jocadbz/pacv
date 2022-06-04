@@ -51,4 +51,4 @@ def si(a, /):
 
 
 def version():
-    os.call(f"pacman --version", shell=True)
+    os.call("pacman --version", shell=True)
