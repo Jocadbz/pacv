@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import subprocess
-import os
 import sys
-
-# from ast import Break
+import lib.pacman as pacman
 
 help_pacy = """
     Pacy : An wrapper for pacman
@@ -21,28 +18,28 @@ help_pacy = """
 
 
 def VERSION():
-    print("Pacy version: 3.0.0")
-    os.system("pacman --version")
+    print("Pacy version: 4.0.0")
+    pacman.version()
 
 
 def INSTALL():
     pkgs = sys.argv[2:]
     res = str(pkgs)[1:-1]
     new = res.replace(',', '')
-    subprocess.call(f'sudo pacman -S {new}', shell=True)
+    pacman.s(new)
 
 
 def UPGRADE():
     args = sys.argv
     args = args[2:]
     if len(args) == 0:
-        subprocess.call("sudo pacman -Syu", shell=True)
+        pacman.syu("")
         sys.exit(0)
     else:
         pkgs = sys.argv[2:]
         res = str(pkgs)[1:-1]
         new = res.replace(',', '')
-        subprocess.call(f'sudo pacman -Syu {new}', shell=True)
+        pacman.syu(new)
         sys.exit(0)
 
 
@@ -50,25 +47,25 @@ def REMOVE():
     pkgs = sys.argv[2:]
     res = str(pkgs)[1:-1]
     new = res.replace(',', '')
-    subprocess.call(f"sudo pacman -Rs {new}", shell=True)
+    pacman.rs(new)
 
 
 def remove_orphans():
-    subprocess.call("sudo pacman -Rs $(pacman -Qqdt)", shell=True)
+    pacman.rs("$(pacman -Qqdt)")
 
 
 def SEARCH():
     pkgs = sys.argv[2:]
     res = str(pkgs)[1:-1]
     new = res.replace(',', '')
-    subprocess.call(f'sudo pacman -Ss {new}', shell=True)
+    pacman.ss(new)
 
 
 def INFO():
     pkgs = sys.argv[2:]
     res = str(pkgs)[1:-1]
     new = res.replace(',', '')
-    subprocess.call(f'sudo pacman -Si {new}')
+    pacman.si(new)
 
 
 abbreviationsDict = {"i": INSTALL, "u": UPGRADE, "r": REMOVE, "c": remove_orphans,
