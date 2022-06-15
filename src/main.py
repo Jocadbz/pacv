@@ -4,16 +4,16 @@ import sys
 import lib.pacman as pacman
 
 help_pacy = """
-    Pacy : An wrapper for pacman
+Pacy : An wrapper for pacman
 
-    Options:
-    i [package]    -> Install the desired package
-    u <package>    -> Do an complete upgrade
-    r [package]    -> remove the desired program
-    c              -> clean the system and remove orphaned packages
-    s [package]    -> Search for an package
-    info [package] -> Display info of an package
-    vs             -> Version of Pacy and Pacman
+Options:
+i [package]    -> Install the desired package
+u <package>    -> Do an complete upgrade
+r [package]    -> remove the desired program
+c              -> clean the system and remove orphaned packages
+s [package]    -> Search for an package
+info [package] -> Display info of an package
+vs             -> Version of Pacy and Pacman
        """
 
 
@@ -68,8 +68,9 @@ def INFO():
     pacman.si(new)
 
 
-abbreviationsDict = {"i": INSTALL, "u": UPGRADE, "r": REMOVE, "c": remove_orphans,
-                     "s": SEARCH, "vs": VERSION, "info": INFO}
+abbreviationsDict = {"i": INSTALL, "u": UPGRADE, "r": REMOVE,
+                     "c": remove_orphans, "s": SEARCH, "vs": VERSION,
+                     "info": INFO}
 
 
 def DO_WORK():
@@ -91,15 +92,13 @@ def DO_WORK():
                         required_function = abbreviationsDict[arguments]
                         required_function()  # Execute this function.
                         break
-                    # Since the user input a command that can't be used as the name of a function.
                     else:
                         # install = INSTALL + () = INSTALL() and eval it.
                         eval(f"{arguments.upper()}()")
                         break
-                # (NameError) will be thrown in case you use a command which is not present.
                 except NameError:
                     print('Unrecognized argument.')
-                    print("Try running with --help flag to see current commands")
+                    print("Running with --help flag to see current commands")
                     break
 
 
