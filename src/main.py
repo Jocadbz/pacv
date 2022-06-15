@@ -18,7 +18,7 @@ vs             -> Version of Pacy and Pacman
 
 
 def VERSION():
-    print("Pacy version: 4.0.0")
+    print("Pacy version: 4.1.1")
     pacman.version()
 
 
