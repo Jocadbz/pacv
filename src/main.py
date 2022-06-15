@@ -68,9 +68,13 @@ def INFO():
     pacman.si(new)
 
 
+def REFRESH():
+    pacman.syyu()
+
+
 abbreviationsDict = {"i": INSTALL, "u": UPGRADE, "r": REMOVE,
                      "c": remove_orphans, "s": SEARCH, "vs": VERSION,
-                     "info": INFO}
+                     "info": INFO, "refresh": REFRESH}
 
 
 def DO_WORK():
