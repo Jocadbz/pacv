@@ -7,7 +7,7 @@ import pacman
 
 fn main() {
     mut app := cli.Command{
-        name: 'pacy'
+        name: 'pacv'
         description: 'Wrapper for pacman package manager'
         version: '5.0.0'
         execute: fn (cmd cli.Command) ? {
