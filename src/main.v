@@ -2,7 +2,6 @@ module main
 
 import os
 import cli
-import pacman
 
 
 fn main() {
@@ -19,7 +18,7 @@ fn main() {
                 name: 'install'
                 description: 'Install the desired package'
                 execute: fn (cmd cli.Command) ? {
-                    pacman.install()
+                    os.system("sudo pacman -S ${os.args[2..].join(' ')}")
                     return
                 }
             }
@@ -27,7 +26,7 @@ fn main() {
                 name: 'remove'
                 description: 'Remove the desired package'
                 execute: fn (cmd cli.Command) ? {
-                    pacman.remove()
+                    os.system("sudo pacman -R ${os.args[2..].join(' ')}")
                     return
                 }
             }
@@ -35,7 +34,7 @@ fn main() {
                 name: 'update'
                 description: 'Updates the system'
                 execute: fn (cmd cli.Command) ? {
-                    pacman.upgrade()
+                    os.system("sudo pacman -Syu ${os.args[2..].join(' ')}")
                     return
                 }
             }
@@ -51,7 +50,7 @@ fn main() {
                 name: 'search'
                 description: 'Search for packages'
                 execute: fn (cmd cli.Command) ? {
-                    pacman.search()
+                    os.system("sudo pacman -Ss ${os.args[2..].join(' ')}")
                     return
                 }
             }
@@ -59,7 +58,7 @@ fn main() {
                 name: 'info'
                 description: 'Information of packages'
                 execute: fn (cmd cli.Command) ? {
-                    pacman.info()
+                    os.system("sudo pacman -Si ${os.args[2..].join(' ')}")
                     return
                 }
             }
@@ -67,7 +66,7 @@ fn main() {
                 name: 'refresh'
                 description: 'Refresh repository info'
                 execute: fn (cmd cli.Command) ? {
-                    pacman.refresh()
+                    os.system("sudo pacman -Syyu ${os.args[2..].join(' ')}")
                     return
                 }
             }
