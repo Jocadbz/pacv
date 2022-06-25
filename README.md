@@ -1,39 +1,31 @@
-# Pacy
+# Pacv
 An wrapper for pacman
 
 ### What this does?
 
-It is basically an wrapper for pacman package manager. it makes syntax more simple.
+It is basically an wrapper for pacman package manager. It makes syntax more simple.
 
 ### Functions
 
-#### Installing packages
-```bash
-pacy i <package> # -> same as "pacman -S"
 ```
-#### Updating the system
-```bash
-pacy u [optional package] # -> same as "pacman -Syu"
-```
+Usage: pacy [flags] [commands]
 
-#### Printing package info
-```bash
-pacy info <package> # -> same as "pacman -Si"
-```
+Wrapper for pacman package manager
 
-#### Removing orphan packages
-```bash
-pacy c # -> same as "pacman -Rs $(pacman -Qqdt)"
-```
+Flags:
+  -help               Prints help information.
+  -version            Prints version information.
 
-#### Removing packages
-```bash
-pacy r <package> # -> same as "pacman -Rs"
-```
-
-#### Searching packages
-```bash
-pacy s <package> # -> same as "pacman -Ss"
+Commands:
+  install             Install the desired package
+  remove              Remove the desired package
+  update              Updates the system
+  orphans             Remove orphaned packages
+  search              Search for packages
+  info                Information of packages
+  refresh             Refresh repository info
+  help                Prints help information.
+  version             Prints version information.
 ```
 
 ### How to install ?
