@@ -1,3 +1,4 @@
+// See LICENSE file for legal terms.
 module main
 
 import os
